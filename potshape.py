@@ -89,10 +89,7 @@ clock = pygame.time.Clock()
 def ShapeSizeChange(shape, x, screen):
     w = shape.get_width()
     h = shape.get_height()
-    if w + x > 0 and h + x > 0:
-        shape = pygame.transform.smoothscale(shape, (w + x, h + x))
-    else:
-        shape = pygame.transform.smoothscale(shape, (w - x, h - x))
+    shape = pygame.transform.smoothscale(shape, (x, x))
     shape.fill((255, 137, 0))
     rect = shape.get_rect()
     screen.blit(shape, rect)
@@ -124,7 +121,7 @@ while True:
            trim_pot_changed = True
 
     if ( trim_pot_changed ):
-            x = int(trim_pot / 10.24)
+            x = int(trim_pot)
             morphingShape = ShapeSizeChange(morphingShape, x, screen)
             pygame.display.update()
 
